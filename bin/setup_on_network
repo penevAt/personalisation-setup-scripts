@@ -1,0 +1,12 @@
+rm ~/.ssh/config
+cp ~/.ssh/config.on-network ~/.ssh/config
+ 
+rm ~/.m2/settings.xml
+cp ~/.m2/settings.on-network.xml ~/.m2/settings.xml
+ 
+export http_proxy=http://www‐cache.reith.bbc.co.uk:80
+export https_proxy=http://www‐cache.reith.bbc.co.uk:80
+export HTTP_PROXY=http://www‐cache.reith.bbc.co.uk:80
+export HTTPS_PROXY=http://www‐cache.reith.bbc.co.uk:80
+npm config set proxy http://www‐cache.reith.bbc.co.uk:80
+npm config set https‐proxy http://www‐cache.reith.bbc.co.uk:80

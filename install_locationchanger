@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cp ./locationchanger/locationchanger ~/bin
+
+sed "s?PATH_PLACEHOLDER?$PATH?g" <./locationchanger/location.changer.plist >~/Library/LaunchAgents/location.changer.plist
+
+launchctl remove ~/Library/LaunchAgents/location.changer.plist
+launchctl unload ~/Library/LaunchAgents/location.changer.plist
+launchctl stop ~/Library/LaunchAgents/location.changer.plist
+launchctl load ~/Library/LaunchAgents/location.changer.plist

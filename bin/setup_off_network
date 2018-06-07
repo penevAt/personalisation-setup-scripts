@@ -1,0 +1,11 @@
+rm ~/.ssh/config
+cp ~/.ssh/config.off-network ~/.ssh/config
+rm ~/.m2/settings.xml
+cp ~/.m2/settings.off-network.xml ~/.m2/settings.xml
+unset http_proxy
+unset https_proxy
+unset HTTP_PROXY
+unset HTTPS_PROXY
+npm config rm proxy
+npm config rm https-proxy
+

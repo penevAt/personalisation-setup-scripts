@@ -1,0 +1,6 @@
+#!/bin/bash
+
+./install_bin_scripts
+./install_m2_settings
+./install_ssh_config
+./install_locationchanger

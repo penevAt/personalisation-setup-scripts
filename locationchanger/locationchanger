@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# automatically change configuration of Mac OS X based on location
+# author: Rocco Georgi <rocco@pavingways.com>
+# version: 0.3.1
+
+# original author: Onne Gorter <o.gorter@gmail.com>
+# url: http://tech.inhelsinki.nl/locationchanger/
+# version: 0.4
+
+# redirect all IO to a logfile
+exec &>/usr/local/var/log/locationchanger.log
+# redirect all IO to /dev/null (comment this in if you don#t want to write to logfile)
+#exec 1>/dev/null 2>/dev/null
+
+# get a little breather before we get data for things to settle down
+sleep 2
+
+# get SSID
+SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep ' SSID:' | cut -d ':' -f 2 | tr -d ' '`
+echo `date` "New SSID found: $SSID"
+
+# empty location var
+LOCATION=
+
+# LOCATIONS 
+# (use to be used Location name here)
+# =============================================
+Location_off_bbc_network="BBC Off Network"
+Location_on_bbc_network="BBC On Network"
+
+# SSIDS
+# =====
+SSID_CompanyIntra=Corporate_Wireless_Network
+
+
+# SSID -> LOCATION mapping
+case $SSID in
+	$SSID_CompanyIntra  ) LOCATION="$Location_on_bbc_network" ;;
+	*				    ) LOCATION="$Location_off_bbc_network";;
+	# ... add more here
+esac
+	REASON="SSID changed to $SSID"
+
+
+# still didn't get a location -> use Location_off_bbc_network
+if [ -z "$LOCATION" ]; then
+	LOCATION="$Location_off_bbc_network"
+	REASON="Automatic Fallback"
+fi
+
+# change network location
+# not needed because the bbc scripts change the location
+# scselect "$LOCATION"
+
+case $LOCATION in
+	$Location_off_bbc_network )
+		off_network
+	;;
+	
+	$Location_on_bbc_network )
+		on_network
+	;;
+esac
+
+echo "--> Location Changer: $LOCATION - $REASON"
+
+exit 0

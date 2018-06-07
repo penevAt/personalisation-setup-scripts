@@ -1,0 +1,13 @@
+#!/bin/sh
+ 
+LOCATION=`networksetup -getcurrentlocation`
+if [ "$LOCATION" = "BBC Off Network" ]; then
+    echo "Already off network"
+else
+    echo "Going off network"
+    networksetup -switchtolocation "BBC Off Network"
+ 
+    NETWORK=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'`
+ 
+    setup_off_network
+fi
