@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Enter path to your developer certificate directory (~/Documents)."
+read certDir
+
+echo "Enter developer certificate file name (developerCertificate.p12)."
+read devCertName
+
+
+openssl pkcs12 -nodes -in $certDir/$devCertName -out $certDir/certificate.pem
+mv $certDir/certificate.pem /etc/pki/
+openssl pkcs12 -in $certDir/$devCertName -out client.crt -clcerts -nokeys
+openssl pkcs12 -in $certDir/$devCertName -out client.key -nocerts -nodes
+mv $certDir/client.crt /etc/pki/tls/certs/
+mv $certDir/client.key /etc/pki/tls/private/

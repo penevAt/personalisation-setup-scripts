@@ -1,0 +1,9 @@
+#!/bin/bash
+
+./install_bin_scripts
+./install_m2_settings
+./install_ssh_config
+./install_locationchanger
+./install_prereqs
+./generate_certs
+./update_bash_profile

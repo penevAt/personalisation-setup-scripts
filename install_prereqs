@@ -1,0 +1,15 @@
+#!/bin/bash
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install maven
+
+brew install pyenv
+
+#pip install virtualenv
+#pip install virtualenvwrapper
+#pip install numpy
+#brew install gfortran
+#pip install scipy
+#brew install freetype
+#pip install matplotlib
+#pip install ipython[all]
