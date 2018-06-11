@@ -26,4 +26,10 @@ echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 
 source ~/.bash_profile
 
+echo "You will need to paste these maven options into IntelliJ if you want maven to work in IntelliJ and not just in the terminal. This can be done later."
+echo "From settings (Intellij preferrences>Build, Execution, Deployment>Build Tools>Maven), add VM options to the Maven Importer:"
+echo $mavenOpts
+read -p "Press enter to continue."
+
+echo "Done"
 #add maven opts

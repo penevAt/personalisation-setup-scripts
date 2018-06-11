@@ -1,20 +1,42 @@
 #!/bin/bash
 
+echo "Important: Read the following instructions."
+
+echo "You will need to follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
+
+echo "https://intranet.gateway.bbc.co.uk is only accessible if you are connected to Corporate_Wireless_Network"
+
 echo "If any of the steps failed to execute consult the getting started guide https://confluence.dev.bbc.co.uk/display/mypers/Getting+Started"
 
-echo "Some steps will require you to create github account,find your cosmos username, add an SSH key to your github and cosmos accounts."
+echo "Before using these scripts you will need admin priviliges."
+
+echo "You will need to have a developer certificate and a national certificate."
+
+echo "Ask DevOps to add your credentials to AWS, provide them with the output of this link https://wormhole.api.bbci.co.uk/who_iam"
+
+echo "Step 7 will require you to create github account,find your cosmos username, add an SSH key to your github and cosmos accounts."
+
+echo "Once all steps are executed successfully you will need to requiest from your team manager to add your github account to the BBC organisation and add you to your team's Cosmos projects"
 
 echo "When you are connected to Corporate_Wireless_Network you will be required to run on_network, if connected to any other network you will be required to run off_network."
 
 echo "If Step 4 runs successfully, off_network and on_network will be ran automatically whenevr you swithc wifi."
 
-echo "When off_network and on_network are ran you might see some files failed to be copied, or that npm isn't installed, these can be ignored if you don't used npm"
+echo "When off_network and on_network are ran you might see some files failed to be copied, or that npm isn't installed, these can be ignored if you don't used npm."
 
-echo "Installing homebrew might not work first time, you will need to follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
+echo "If you are having network issues off_network and on_network are failing to configure your proxies. Check the Getting Started page on confluence tot roubleshoot this."
 
-echo "https://intranet.gateway.bbc.co.uk is only accessible if you are connected to Corporate_Wireless_Network"
+echo "Important: Unselect 'SOCKS' configuration in proxy settings,if it is added by the configuration. Downloading required artefacts from artifactory will probably not work otherwise. Open Network Preferences -> Advanced -> Proxies -> SOCKS"
 
-echo "You will be requried to install a jdk in Step 8"
+echo "Installing homebrew might not work first time if you didn't follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
+
+echo "You will be requried to install a jdk in Step 8, this can be skipped and done later."
+
+echo "Teams use slack, so ask your team for your slack workspace."
+
+echo "To use Outlook off the reith network, update your outlook exchange server to the following: https://oa.myconnect.bbc.co.uk/ews/exchange.asmx"
+
+echo "This should allow you to receive emails both on and off network."
 
 echo "Steps can be re-ran individually"
 
@@ -22,34 +44,34 @@ echo "Running all steps."
 
 echo "Step 1: Copying scripts to ~/bin"
 echo "./install_bin_scripts"
-./install_bin_scripts 
+sudo ./install_bin_scripts 
 
 echo "Step 2: Copying off and on network settings to ~/.m2"
 echo "./install_m2_settings"
-./install_m2_settings
+sudo ./install_m2_settings
 
 echo "Step 3: Copying off and on network config to ~/.ssh"
 echo "./install_ssh_config"
-./install_ssh_config
+sudo ./install_ssh_config
 
 echo "Step 4: Copying locationchanger to ~/bin and loading Launch Agent"
 echo "./install_locationchanger"
-./install_locationchanger
+sudo ./install_locationchanger
 
 echo "Step 5: Setting up xcode-select, homebrew, maven and pyenv"
 echo "./install_prereqs"
-./install_prereqs
+sudo ./install_prereqs
 
 echo "Step 6: Creating certificates and keys"
 echo "./create_certs"
-./create_certs
+sudo ./create_certs
 
 echo "Step 7: Creating SSH key"
 echo "./create_keys"
-./create_keys
+sudo ./create_keys
 
 echo "Step 8: Creating user environment variables in ~/.bash_profile"
 echo "./update_bash_profile"
-./update_bash_profile
+sudo ./update_bash_profile
 
 echo "Steps finished. Possibly successfully."
