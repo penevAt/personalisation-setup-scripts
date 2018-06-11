@@ -1,4 +1,9 @@
 #!/bin/bash
 
+echo "Creating ~/bin"
 mkdir -p ~/bin
+
+echo "Moving off_network and on_network scripts to ~/bin"
 cp -r ./bin/ ~/bin
+
+echo "Done"

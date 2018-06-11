@@ -1,7 +1,15 @@
 #!/bin/bash
-echo What is your cosmos username?
+echo "What is your cosmos username. Navigate to https://cosmos.tools.bbc.co.uk/ and click on your email in the top right corner your user name will be on the following page."
 
+echo "What is your cosmos username?"
 read cosmos_username
 
-sed "s/<Your Cosmos Username>/$cosmos_username/g" <./.ssh/config.off-network >~/.ssh/config.off-network
-sed "s/<Your Cosmos Username>/$cosmos_username/g" <./.ssh/config.on-network >~/.ssh/config.on-network
+echo "Creating ~/.ssh/"
+mkdir -p ~/.ssh/
+
+echo "Moving config, config.off-network and config.on-network to ~/.ssh/"
+sed "s/<Your Cosmos Username>/$cosmos_username/g" <./.ssh/config.off-network >> ~/.ssh/config.off-network
+sed "s/<Your Cosmos Username>/$cosmos_username/g" <./.ssh/config.on-network >> ~/.ssh/config.on-network
+sed "s/<Your Cosmos Username>/$cosmos_username/g" <./.ssh/config.on-network >> ~/.ssh/config
+
+echo "Done"

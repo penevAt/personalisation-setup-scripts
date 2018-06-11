@@ -1,9 +1,55 @@
 #!/bin/bash
 
-./install_bin_scripts
+echo "If any of the steps failed to execute consult the getting started guide https://confluence.dev.bbc.co.uk/display/mypers/Getting+Started"
+
+echo "Some steps will require you to create github account,find your cosmos username, add an SSH key to your github and cosmos accounts."
+
+echo "When you are connected to Corporate_Wireless_Network you will be required to run on_network, if connected to any other network you will be required to run off_network."
+
+echo "If Step 4 runs successfully, off_network and on_network will be ran automatically whenevr you swithc wifi."
+
+echo "When off_network and on_network are ran you might see some files failed to be copied, or that npm isn't installed, these can be ignored if you don't used npm"
+
+echo "Installing homebrew might not work first time, you will need to follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
+
+echo "https://intranet.gateway.bbc.co.uk is only accessible if you are connected to Corporate_Wireless_Network"
+
+echo "You will be requried to install a jdk in Step 8"
+
+echo "Steps can be re-ran individually"
+
+echo "Running all steps."
+
+echo "Step 1: Copying scripts to ~/bin"
+echo "./install_bin_scripts"
+./install_bin_scripts 
+
+echo "Step 2: Copying off and on network settings to ~/.m2"
+echo "./install_m2_settings"
 ./install_m2_settings
+
+echo "Step 3: Copying off and on network config to ~/.ssh"
+echo "./install_ssh_config"
 ./install_ssh_config
+
+echo "Step 4: Copying locationchanger to ~/bin and loading Launch Agent"
+echo "./install_locationchanger"
 ./install_locationchanger
+
+echo "Step 5: Setting up xcode-select, homebrew, maven and pyenv"
+echo "./install_prereqs"
 ./install_prereqs
-./generate_certs
+
+echo "Step 6: Creating certificates and keys"
+echo "./create_certs"
+./create_certs
+
+echo "Step 7: Creating SSH key"
+echo "./create_keys"
+./create_keys
+
+echo "Step 8: Creating user environment variables in ~/.bash_profile"
+echo "./update_bash_profile"
 ./update_bash_profile
+
+echo "Steps finished. Possibly successfully."

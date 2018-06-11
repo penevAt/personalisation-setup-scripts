@@ -1,10 +1,18 @@
 #!/bin/bash
 
+echo "Copying locationchanger script to ~/bin."
 cp ./locationchanger/locationchanger ~/bin
 
-sed "s?PATH_PLACEHOLDER?$PATH?g" <./locationchanger/location.changer.plist >~/Library/LaunchAgents/location.changer.plist
+echo "Creating ~/Library/LaunchAgents/"
+mkdir -p ~/Library/LaunchAgents/
 
+echo "Moving location.changer.plist to  ~/Library/LaunchAgents/"
+sed "s?PATH_PLACEHOLDER?$PATH?g" <./locationchanger/location.changer.plist >> ~/Library/LaunchAgents/location.changer.plist
+
+echo "Loading location.changer.plist"
 launchctl remove ~/Library/LaunchAgents/location.changer.plist
 launchctl unload ~/Library/LaunchAgents/location.changer.plist
 launchctl stop ~/Library/LaunchAgents/location.changer.plist
 launchctl load ~/Library/LaunchAgents/location.changer.plist
+
+echo "Done"

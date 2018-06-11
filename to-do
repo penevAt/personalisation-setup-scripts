@@ -13,10 +13,12 @@ Important
 			sudo mv ~/Documents/certs/client.key /etc/pki/tls/private/
 	
 	
-	install prerequisites
+	install prerequisites -- DONE 
 		* install homebrew
 		* install mvn
 		* install pyhon + pyenv (https://gist.github.com/patriciogonzalezvivo/77da993b14a48753efda)
+	
+	Generate RSA key
 	
 ADD console logging
 

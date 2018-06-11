@@ -1,8 +1,20 @@
 #!/bin/bash
+echo "Before any of this works you would need to request BBC Staff SSID from BBC Gateway"
+echo "Make sure you are connected to Corporate_Wireless_Network"
+echo "Follow the steps on https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
+echo "Have you successfully connected to BBC Staff Wi-Fi?"
+read -p "Press enter to continue."
 
+echo "Installing xcode-select"
+xcode-select --install
+
+echo "Installing Homebrew"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo "Installing maven"
 brew install maven
 
+echo "Installing pyenv"
 brew install pyenv
 
 #pip install virtualenv
