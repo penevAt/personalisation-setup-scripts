@@ -6,7 +6,7 @@ echo "Have you successfully connected to BBC Staff Wi-Fi?"
 read -p "Press enter to continue."
 
 echo "Installing xcode-select"
-xcode-select --install
+sudo xcode-select --install
 
 echo "Installing Homebrew"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -17,6 +17,10 @@ brew install maven
 echo "Installing pyenv"
 brew install pyenv
 
+echo "Installing nvm"
+brew install nvm
+
+echo "Done."
 #pip install virtualenv
 #pip install virtualenvwrapper
 #pip install numpy

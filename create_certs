@@ -1,16 +1,18 @@
 #!/bin/bash
 
-echo "Enter path to your developer certificate directory (~/Documents)."
+echo "Enter path to your developer certificate directory ($HOME/Documents)."
 read certDir
 
 echo "Enter developer certificate file name (developerCertificate.p12)."
 read devCertName
 
-echo "Creating ~/Documents/Certificates"
+echo "Creating $HOME/Documents/Certificates"
 mkdir -p ~/Documents/Certificates
 
-echo "Copying $certDir/$devCertName to ~/Documents/Certificates/"
-cp $certDir/$devCertName ~/Documents/Certificates/
+certPath=$certDir/$devCertName
+
+echo "Copying $certDir/$devCertName to $HOME/Documents/Certificates/"
+cp $certPath ~/Documents/Certificates
 
 echo "Creating certificate.pem"
 openssl pkcs12 -nodes -in ~/Documents/Certificates/$devCertName -out ~/Documents/Certificates/certificate.pem
@@ -27,13 +29,13 @@ mkdir -p /etc/pki/tls/certs/
 echo "Creating /etc/pki/tls/private/"
 mkdir -p /etc/pki/tls/private/
 
-echo "Copying certificate.pem to /etc/pki/"
-cp ~/Documents/Certificates/certificate.pem /etc/pki/
+echo "Copying ~/Documents/Certificates/certificate.pem to /etc/pki/"
+sudo cp ~/Documents/Certificates/certificate.pem /etc/pki/
 
-echo "Copying certificate.pem to /etc/pki/tls/certs/"
-cp ~/Documents/Certificates/client.crt /etc/pki/tls/certs/
+echo "Copying ~/Documents/Certificates/client.crt to /etc/pki/tls/certs/"
+sudo cp ~/Documents/Certificates/client.crt /etc/pki/tls/certs/
 
-echo "Copying certificate.pem to /etc/pki/tls/private/"
-cp ~/Documents/Certificates/client.key /etc/pki/tls/private/
+echo "Copying ~/Documents/Certificates/client.key to /etc/pki/tls/private/"
+sudo cp ~/Documents/Certificates/client.key /etc/pki/tls/private/
 
 echo "Done"

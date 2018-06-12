@@ -1,77 +1,73 @@
 #!/bin/bash
 
-echo "Important: Read the following instructions."
+echo "---Important: Read the following instructions."
+echo "Usefil links: "
+echo "https://confluence.dev.bbc.co.uk/display/MyBBC/myBBC+New+Joiner+Induction+Pack"
+echo "https://confluence.dev.bbc.co.uk/display/mypers/Getting+Started  -- these scripts automate most of what is in this link"
+echo "---Before using these scripts you will need elevated priviliges."
+echo "---Before running these you will need to follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
+echo "---Before running these steps you will need to have a developer certificate and a national certificate."
+echo "---https://intranet.gateway.bbc.co.uk is only accessible if you are connected to Corporate_Wireless_Network"
+echo "---If any of the steps failed to execute consult the getting started guide https://confluence.dev.bbc.co.uk/display/mypers/Getting+Started"
+echo "---Ask DevOps to add your credentials to AWS, provide them with the output of this link https://wormhole.api.bbci.co.uk/who_iam"
+echo "---Step 7 will require you to create github account,find your cosmos username, add an SSH key to your github and cosmos accounts."
+echo "---Once all steps are executed successfully you will need to requiest from your team manager to add your github account to the BBC organisation and add you to your team's Cosmos projects"
+echo "---When you are connected to Corporate_Wireless_Network you will be required to run on_network, if connected to any other network you will be required to run off_network."
+echo "---If Step 4 runs successfully, off_network and on_network will be ran automatically whenever you switch wifi."
+echo "---When off_network and on_network are ran you might see some files failed to be copied, or that npm isn't installed, these can be ignored if you don't used npm."
+echo "---If you are having network issues off_network and on_network are failing to configure your proxies. Check the Getting Started page on confluence to troubleshoot this."
+echo "---Important: Unselect 'SOCKS' configuration in proxy settings,if it is added by the configuration. Downloading required artefacts from artifactory will probably not work otherwise. Open Network Preferences -> Advanced -> Proxies -> SOCKS"
+echo "---Installing homebrew might not work first time if you didn't follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx or if SOCKS wasn't disabled"
+echo "---If Step 2, Step 5 and Step 8 were executed successfully and maven doesn't work, then make sure that your MAVEN_OPTS in ~/.bash_profile is pointing to the correct files (echo $MAVEN_OPTS) and that you entered the correct password"
+echo "---You will be requried to install a jdk in Step 8, this can be skipped and done later. Use Java 8, because maven does not support java 10 or java 11 yet."
+echo "---Teams use slack, so ask your team for your slack workspace."
+echo "---To use Outlook off the reith network, update your outlook exchange server to the following: https://oa.myconnect.bbc.co.uk/ews/exchange.asmx, this should allow you to receive emails both on and off network."
+echo "---All steps can be re-ran individually, steps or the setup script should not be ran as root."
+echo "---Step 5 fails often, because to setup the wifi correctly you would need the off_network and on_network scripts, this step is important since it installs homebrew maven, nvm and pyenv, but can be ran later."
 
-echo "You will need to follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
-
-echo "https://intranet.gateway.bbc.co.uk is only accessible if you are connected to Corporate_Wireless_Network"
-
-echo "If any of the steps failed to execute consult the getting started guide https://confluence.dev.bbc.co.uk/display/mypers/Getting+Started"
-
-echo "Before using these scripts you will need admin priviliges."
-
-echo "You will need to have a developer certificate and a national certificate."
-
-echo "Ask DevOps to add your credentials to AWS, provide them with the output of this link https://wormhole.api.bbci.co.uk/who_iam"
-
-echo "Step 7 will require you to create github account,find your cosmos username, add an SSH key to your github and cosmos accounts."
-
-echo "Once all steps are executed successfully you will need to requiest from your team manager to add your github account to the BBC organisation and add you to your team's Cosmos projects"
-
-echo "When you are connected to Corporate_Wireless_Network you will be required to run on_network, if connected to any other network you will be required to run off_network."
-
-echo "If Step 4 runs successfully, off_network and on_network will be ran automatically whenevr you swithc wifi."
-
-echo "When off_network and on_network are ran you might see some files failed to be copied, or that npm isn't installed, these can be ignored if you don't used npm."
-
-echo "If you are having network issues off_network and on_network are failing to configure your proxies. Check the Getting Started page on confluence tot roubleshoot this."
-
-echo "Important: Unselect 'SOCKS' configuration in proxy settings,if it is added by the configuration. Downloading required artefacts from artifactory will probably not work otherwise. Open Network Preferences -> Advanced -> Proxies -> SOCKS"
-
-echo "Installing homebrew might not work first time if you didn't follow https://intranet.gateway.bbc.co.uk/designengineering/technology/Pages/bbc-staff-wifi.aspx"
-
-echo "You will be requried to install a jdk in Step 8, this can be skipped and done later."
-
-echo "Teams use slack, so ask your team for your slack workspace."
-
-echo "To use Outlook off the reith network, update your outlook exchange server to the following: https://oa.myconnect.bbc.co.uk/ews/exchange.asmx"
-
-echo "This should allow you to receive emails both on and off network."
-
-echo "Steps can be re-ran individually"
+read -p "Press enter to continue."
 
 echo "Running all steps."
 
 echo "Step 1: Copying scripts to ~/bin"
 echo "./install_bin_scripts"
-sudo ./install_bin_scripts 
+./install_bin_scripts 
+read -p "Check the logs for errors and then press enter to continue or CMsuD+C to cancel and run the step again."
 
 echo "Step 2: Copying off and on network settings to ~/.m2"
 echo "./install_m2_settings"
-sudo ./install_m2_settings
+./install_m2_settings
+read -p "Check the logs for errors and then press enter to continue or CMD+C to cancel and run the step again."
 
 echo "Step 3: Copying off and on network config to ~/.ssh"
 echo "./install_ssh_config"
-sudo ./install_ssh_config
+./install_ssh_config
+read -p "Check the logs for errors and then press enter to continue or CMD+C to cancel and run the step again."
 
 echo "Step 4: Copying locationchanger to ~/bin and loading Launch Agent"
 echo "./install_locationchanger"
-sudo ./install_locationchanger
+./install_locationchanger
+read -p "Check the logs for errors and then press enter to continue or CMD+C to cancel and run the step again."
 
 echo "Step 5: Setting up xcode-select, homebrew, maven and pyenv"
 echo "./install_prereqs"
-sudo ./install_prereqs
+./install_prereqs
+read -p "Check the logs for errors and then press enter to continue or CMD+C to cancel and run the step again."
 
 echo "Step 6: Creating certificates and keys"
 echo "./create_certs"
-sudo ./create_certs
+./create_certs
+read -p "Check the logs for errors and then press enter to continue or CMD+C to cancel and run the step again."
 
 echo "Step 7: Creating SSH key"
-echo "./create_keys"
-sudo ./create_keys
+echo "./create_ssh_key"
+./create_ssh_key
+read -p "Check the logs for errors and then press enter to continue or CMD+C to cancel and run the step again."
 
 echo "Step 8: Creating user environment variables in ~/.bash_profile"
 echo "./update_bash_profile"
-sudo ./update_bash_profile
+./update_bash_profile
+read -p "Check the logs for errors and then press enter to continue or CMD+C to cancel and run the step again."
 
 echo "Steps finished. Possibly successfully."
+echo "If you think that the default mac terminal is terrible and want a proper terminal, here is a useful link- https://gist.github.com/kevin-smets/8568070 (don't forget to add \"source ~/.bash_profile\" to your ~/.zshrc file)."

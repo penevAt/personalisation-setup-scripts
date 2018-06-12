@@ -6,17 +6,17 @@ echo "Enter patht to java jdk. (/Library/Java/JavaVirtualMachines/jdk1.8.0_162.j
 read javaHome
 echo "export JAVA_HOME=$javaHome" >> ~/.bash_profile
 
-echo "Enter path to dev certificate. (~/Documents/devCert.p12)"
+echo "Enter path to dev certificate. ($HOME/Documents/devCert.p12)"
 read devCertPath
 
 echo "Enter pass for dev certificate."
 read devCertPass
 
-echo "Moving jssecacerts to ~/certs."
-mkdir ~/Documents/Certificates/
-cp jssecacerts ~/Documents/Certificates/jssecacerts
+echo "Moving jssecacerts to ~/Documents/Certificates/"
+mkdir -p ~/Documents/Certificates
+sudo cp jssecacerts ~/Documents/Certificates/jssecacerts
 
-mavenOpts="-Xms256m -Xmx2048m -XX:MaxPermSize=1024m -Djavax.net.ssl.keyStore=$devCertPath -Djavax.net.ssl.keyStorePassword=$devCertPass -Djavax.net.ssl.keyStoreType=PKCS12 -Djavax.net.ssl.trustStore=~/Documents/Certificates/jssecacerts -Djavax.net.ssl.trustStorePassword=changeit"
+mavenOpts="-Xms256m -Xmx2048m -XX:MaxPermSize=1024m -Djavax.net.ssl.keyStore=$devCertPath -Djavax.net.ssl.keyStorePassword=$devCertPass -Djavax.net.ssl.keyStoreType=PKCS12 -Djavax.net.ssl.trustStore=$HOME/Documents/Certificates/jssecacerts -Djavax.net.ssl.trustStorePassword=changeit"
 
 echo 'export MAVEN_OPTS="'$mavenOpts'"'  >> ~/.bash_profile
 

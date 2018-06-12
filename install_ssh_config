@@ -7,6 +7,9 @@ read cosmos_username
 echo "Creating ~/.ssh/"
 mkdir -p ~/.ssh/
 
+rm -f ~/.ssh/config.off-network
+rm -f ~/.ssh/config.on-network
+rm -f ~/.ssh/config
 echo "Moving config, config.off-network and config.on-network to ~/.ssh/"
 sed "s/<Your Cosmos Username>/$cosmos_username/g" <./.ssh/config.off-network >> ~/.ssh/config.off-network
 sed "s/<Your Cosmos Username>/$cosmos_username/g" <./.ssh/config.on-network >> ~/.ssh/config.on-network

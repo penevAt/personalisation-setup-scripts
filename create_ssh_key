@@ -8,9 +8,10 @@ echo "What is your bbc email?"
 read email
 
 echo "Generatin rsa key pair."
-echo "When you're prompted to enter a file in which to save the key press Enter. This accepts the default file location."
+echo "When you're prompted to enter a file in which to save the key press enter and the file will be saved in the default directory."
 ssh-keygen -t rsa -b 4096 -C "$email"
 
+mkdir -p ~/.ssh/
 
 echo "Starting the ssh-agent in the background."
 eval "$(ssh-agent -s)"
@@ -18,15 +19,16 @@ eval "$(ssh-agent -s)"
 echo "Adding ssh key to keychain."
 ssh-add -K ~/.ssh/id_rsa
 
-pbcopy < ~/.ssh/id_rsa.pub
-
 echo "SSH key:"
-echo < ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub
+
+echo "SSH key has been copied to your clipboard."
+pbcopy < ~/.ssh/id_rsa.pub
 
 echo "Add the SSH key to your github account. Navigate to settings->SSH and GPG keys andd add the keys(https://github.com/settings/keys)."
 read -p "Press enter to continue."
 
-echo "Add the SSH key to your Cosmos account. Navigate to https://cosmos.tools.bbc.co.uk/ then click on your email int he top right corner on the website. Past the ssh key and press update."
+echo "Add the SSH key to your Cosmos account. Navigate to https://cosmos.tools.bbc.co.uk/ then click on your email in the top right corner on the website. Past the ssh key and press update."
 read -p "Press enter to continue."
 
-read "Done."
+echo "Done."

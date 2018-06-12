@@ -4,6 +4,9 @@ echo "Creating ~/.m2/"
 mkdir -p ~/.m2/
 
 echo "Moving settings.xml, settings.off-network.xml and settings.on-network.xml to ~/.m2/"
+rm -f ~/.m2/settings.off-network.xml
+rm -f ~/.m2/settings.on-network.xml
+rm -f ~/.m2/settings.xml
 sed "s/<BbcUserID>/$(whoami)/g" <./.m2/settings.off-network.xml >> ~/.m2/settings.off-network.xml
 sed "s/<BbcUserID>/$(whoami)/g" <./.m2/settings.on-network.xml >> ~/.m2/settings.on-network.xml
 sed "s/<BbcUserID>/$(whoami)/g" <./.m2/settings.on-network.xml >> ~/.m2/settings.xml
